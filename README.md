@@ -247,8 +247,8 @@ continuará el circuito y aparecerá en la bandeja de Marge.
 
 ![](docs/capturas/admin/8-infoOmitido.png)
 
-Por el contrario, si en lugar de omitir la tarea se delega en otro firmante, de forma similar a la sustitución
-la tarea aparecerá del firmante en que se delega la tarea. La firma como el rechazo quedan registrados manteniendo
+Por el contrario, si en lugar de omitir la tarea se delega en otro firmante, de forma similar a la sustitución,
+la tarea aparecerá en la bandeja del firmante en que se delega la tarea. Firma y rechazo quedan registrados manteniendo
 tanto la información del firmante original como la del firmante delegado.
 
 ![](docs/capturas/admin/9-listarDelegado.png)
