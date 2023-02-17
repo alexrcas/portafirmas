@@ -149,6 +149,7 @@ Para simplificar el diagrama, se muestra el modelado de esta solución por separ
 1. Implementsr patrón repositorio (DAO) para panache, ya que se empezó usando de la forma más directa (métodos estáticos) para experimentar la tecnología.
 2. Crear en el framework el concepto de entidad auditada.
 3. Logging: es necesario volcar en logs con lujo de detalles todo lo que ocurre en todo momento, para ello no solo se deben colocar logs de forma manual sino que a nivel de framework hay que hacer log por defecto de múltiples acciones
+4. Implementar a nivel de framework concepto de versionado de comando para controlar concurrencia
 
 
 ### Demostración
