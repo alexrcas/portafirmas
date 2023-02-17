@@ -1,5 +1,7 @@
 # Portafirmas
 
+Esta es una aplicación desarrollada para un cliente, por lo que el código fuente es privado y se encuentra en otro repositorio. Se publica únicamente el README del proyecto.
+
 ### Descripción
 Portafirmas de documentos electrónicos. El portafirmas no almacena documentos, tan solo una representación y un identificador a un repositorio documental externo. Posee las siguientes funcionalidades:
 * Visualizar documentos
