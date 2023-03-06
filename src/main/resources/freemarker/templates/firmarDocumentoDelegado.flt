@@ -1,0 +1,24 @@
+<#include "avaForm.flt">
+
+
+<span class="modalTitle">Firmar Documento</span>
+
+<form action="/portafirmas/firmarDocumentoDelegado" method="post">
+    <div class="alert alert-info">Va a firmar el documento delegado desde: ${ausente.nombre} (${ausente.dni})</div>
+
+    <input type="text" name="idTarea" class="d-none">
+    <input type="text" id="valorFirma" name="firma" class="d-none">
+
+    <div class="modal-footer d-flex justify-content-between pb-0 px-0">
+        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+        <button id="submit-modal-btn" class="btn btn-success d-none" type="button">Firmar</button>
+        <button id="firmar-btn" onclick="doAutofirma()" class="btn btn-success" type="button">Firmar</button>
+    </div>
+</form>
+
+<script>
+    const doAutofirma = () => {
+        const contenidoDocumento = '${contenidoDocumento}'
+        abrirAutofirma(contenidoDocumento);
+    }
+</script>

@@ -1,0 +1,95 @@
+<nav class="navbar navbar-light navbar-vertical navbar-expand-xl">
+    <div class="collapse navbar-collapse mt-4 py-4" id="navbarVerticalCollapse">
+        <div class="navbar-vertical-content scrollbar">
+            <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
+                <li class="nav-item">
+
+                    <div class="row navbar-vertical-label-wrapper mb-2">
+                        <div class="col-auto navbar-vertical-label">Bandejas</div>
+                        <div class="col ps-0">
+                            <hr class="mb-0 navbar-vertical-divider">
+                        </div>
+                    </div>
+                    <a class="nav-link" href="" role="button">
+                        <div class="d-flex align-items-center <#if active=='PENDIENTES'>active</#if>">
+                            <i class="fa-solid fa-file-signature icon-fs-custom"></i>
+                            <a href="/secured/listarPendientes">
+                                <span class="nav-link-text ps-3">Pendientes</span>
+                            </a>
+                        </div>
+                    </a>
+
+                    <a class="nav-link" href="" role="button">
+                        <div class="d-flex align-items-center <#if active=='PENDIENTESCIRCUITO'>active</#if>">
+                            <i class="fa-solid fa-angles-right icon-fs-custom"></i>
+                            <a href="/secured/listarPendientesCircuito">
+                                <span class="nav-link-text ps-3">Próximos en circuito</span>
+                            </a>
+                        </div>
+                    </a>
+
+                    <a class="nav-link" href="" role="button">
+                        <div class="d-flex align-items-center <#if active=='FIRMADOS'>active</#if>">
+                            <i class="fa-solid fa-file-circle-check icon-fs-custom"></i>
+                            <a href="/secured/listarFirmados">
+                                <span class="nav-link-text ps-3">Firmados</span>
+                            </a>
+                        </div>
+                    </a>
+
+                    <a class="nav-link" href="" role="button">
+                        <div class="d-flex align-items-center <#if active=='RECHAZADOS'>active</#if>">
+                            <i class="fa-solid fa-circle-xmark icon-fs-custom"></i>
+                            <a href="/secured/listarRechazados">
+                                <span class="nav-link-text ps-3">Rechazados</span>
+                            </a>
+                        </div>
+                    </a>
+
+                    <div class="row navbar-vertical-label-wrapper mb-2 mt-4">
+                        <div class="col-auto navbar-vertical-label">Administrar</div>
+                        <div class="col ps-0">
+                            <hr class="mb-0 navbar-vertical-divider">
+                        </div>
+                    </div>
+                    <a class="nav-link" href="" role="button">
+                        <div class="d-flex align-items-center <#if active=='USUARIOS'>active</#if>">
+                            <i class="fa-solid fa-users icon-fs-custom"></i>
+                            <a href="/secured/listarUsuarios">
+                                <span class="nav-link-text ps-3">Usuarios</span>
+                            </a>
+                        </div>
+                    </a>
+
+                    <a class="nav-link" href="" role="button">
+                        <div class="d-flex align-items-center <#if active=='CIRCUITOS'>active</#if>">
+                            <i class="fa-solid fa-list-check icon-fs-custom"></i>
+                            <a href="/secured/listarCircuitos">
+                                <span class="nav-link-text ps-3">Circuitos</span>
+                            </a>
+                        </div>
+                    </a>
+
+                    <a class="nav-link" href="" role="button">
+                        <div class="d-flex align-items-center <#if active=='AUSENCIAS'>active</#if>">
+                            <i class="fa-solid fa-person-walking-luggage icon-fs-custom"></i>
+                            <a href="/secured/listarAusencias">
+                                <span class="nav-link-text ps-3">Ausencias</span>
+                            </a>
+                        </div>
+                    </a>
+
+                    <a class="nav-link" href="" role="button">
+                        <div class="d-flex align-items-center <#if active=='ADMINISTRAR'>active</#if>">
+                            <i class="fa-solid fa-gear icon-fs-custom"></i>
+                            <a href="/secured/administrarTareas">
+                                <span class="nav-link-text ps-3">Administrar</span>
+                            </a>
+                        </div>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

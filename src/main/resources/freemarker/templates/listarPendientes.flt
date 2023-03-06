@@ -1,0 +1,192 @@
+<#import "index.flt" as base>
+
+<@base.layout>
+
+<table class="table">
+
+    <tbody>
+
+    <#list lineasDocumentos as lineaDocumento>
+    <tr class="smooth-hover">
+        <td class="list-item border-bottom d-flex">
+
+                <div class="d-flex flex-column w-100 pb-3">
+
+                    <div class="d-flex w-100 align-items-center">
+                        <div class="d-inline-flex align-items-center item-row" onclick="descargarDocumento('${lineaDocumento.uuid}')" role="button">
+                            <i class="format-icon PDF fa-2x"></i> <span class="ms-3">${lineaDocumento.nombre}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-2">
+                        <em>${lineaDocumento.descripcion}</em>
+                    </div>
+
+                    <#if lineaDocumento.inCircuito>
+                        <div class="mb-2">
+                            <em>Circuito: <b>${lineaDocumento.circuitoDto.nombre}</b> -
+                                <a href="javascript:void(0)" onclick="showInfoCircuito('${lineaDocumento.idTarea}')">Información del circuito</a>
+                            </em>
+                        </div>
+                    </#if>
+
+                    <div>
+
+                        <#if lineaDocumento.validacion == true>
+
+                            <#if lineaDocumento.sustituto == false>
+                                <#if lineaDocumento.delegado == true && lineaDocumento.usuarioOriginal == false>
+                                    <button class="btn btn-outline-success" onclick="firmarComoDelegado('${lineaDocumento.idTarea}')">Validar como delegado</button>
+                                    <button class="btn btn-outline-danger ms-3" onclick="rechazarComoDelegado('${lineaDocumento.idTarea}')">Rechazar como delegado</button>
+                                <#else>
+                                    <button class="btn btn-outline-success" onclick="validar('${lineaDocumento.idTarea}')">Validar</button>
+                                    <button class="btn btn-outline-danger ms-3" onclick="rechazar('${lineaDocumento.idTarea}')">Rechazar</button>
+                                </#if>
+
+                            <#else>
+                                <button class="btn btn-outline-success" onclick="firmarComoSustituto('${lineaDocumento.idTarea}')">Validar como sustituto</button>
+                                <button class="btn btn-outline-danger ms-3" onclick="rechazarComoSustituto('${lineaDocumento.idTarea}')">Rechazar como sustituto</button>
+                            </#if>
+
+
+                        <#else>
+
+                            <#if lineaDocumento.sustituto == false>
+                                <#if lineaDocumento.delegado == true && lineaDocumento.usuarioOriginal == false>
+                                    <button class="btn btn-outline-success" onclick="firmarComoDelegado('${lineaDocumento.idTarea}')">Firmar como delegado</button>
+                                    <button class="btn btn-outline-danger ms-3" onclick="rechazarComoDelegado('${lineaDocumento.idTarea}')">Rechazar como delegado</button>
+                                <#else>
+                                    <button class="btn btn-outline-success" onclick="firmar('${lineaDocumento.idTarea}')">Firmar</button>
+                                    <button class="btn btn-outline-danger ms-3" onclick="rechazar('${lineaDocumento.idTarea}')">Rechazar</button>
+                                </#if>
+
+                            <#else>
+                                <button class="btn btn-outline-success" onclick="firmarComoSustituto('${lineaDocumento.idTarea}')">Firmar como sustituto</button>
+                                <button class="btn btn-outline-danger ms-3" onclick="rechazarComoSustituto('${lineaDocumento.idTarea}')">Rechazar como sustituto</button>
+                            </#if>
+
+                        </#if>
+
+
+
+
+
+
+                    </div>
+
+                </div>
+        </td>
+    </tr>
+    </#list>
+
+    </tbody>
+</table>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content position-relative h-100">
+            <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
+                <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
+                    <h4 class="mb-1" id="documentModalTitle">Documento</h4>
+                </div>
+                <div id="documentModalContent" class="h-100"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="circuitModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content position-relative h-100">
+            <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
+                <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
+                    <h4 class="mb-1">Información del circuito</h4>
+                </div>
+                <div id="circuitModalContent" class="h-100"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    const descargarDocumento = async (uuid) => {
+        const response = await fetch('/portafirmas/secured/descargarDocumento/' + uuid);
+        const text = await response.text();
+
+        const el = document.querySelector('#documentModal');
+        const modal = new bootstrap.Modal(el, {});
+        const modalContent = document.querySelector('#documentModalContent');
+        modalContent.innerHTML = text
+        modal.show();
+    }
+
+    const showInfoCircuito = async(id) => {
+        const response = await fetch('/portafirmas/secured/showInfoCircuito/' + id);
+        const text = await response.text();
+
+        const el = document.querySelector('#circuitModal');
+        const modal = new bootstrap.Modal(el, {});
+        const modalContent = document.querySelector('#circuitModalContent');
+        modalContent.innerHTML = text
+
+        el.addEventListener('shown.bs.modal', function () {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        });
+
+        modal.show();
+    }
+
+    const rechazar = idTarea => {
+        const url = '/portafirmas/secured/rechazarDocumento?idTarea=' + idTarea;
+        fetchModal(url);
+    }
+
+    const firmar = idTarea => {
+        const url = '/portafirmas/secured/firmarDocumento?idTarea=' + idTarea;
+        fetchModal(url);
+    }
+
+    const validar = idTarea => {
+        const url = '/portafirmas/secured/validarDocumento?idTarea=' + idTarea;
+        fetchModal(url);
+    }
+
+    const firmarComoSustituto = idTarea => {
+        const url = '/portafirmas/secured/firmarDocumentoSustituto?idTarea=' + idTarea;
+        fetchModal(url);
+    }
+
+    const rechazarComoSustituto = idTarea => {
+        const url = '/portafirmas/secured/rechazarDocumentoSustituto?idTarea=' + idTarea;
+        fetchModal(url);
+    }
+
+    const firmarComoDelegado = idTarea => {
+        const url = '/portafirmas/secured/firmarDocumentoDelegado?idTarea=' + idTarea;
+        fetchModal(url);
+    }
+
+    const rechazarComoDelegado = idTarea => {
+        const url = '/portafirmas/secured/rechazarDocumentoDelegado?idTarea=' + idTarea;
+        fetchModal(url);
+    }
+
+</script>
+
+</@base.layout>

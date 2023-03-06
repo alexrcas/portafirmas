@@ -1,0 +1,101 @@
+<#import "index.flt" as base>
+
+<@base.layout>
+
+<div class="row justify-content-start g-0 mt-3 w-50 mb-2">
+    <form>
+        <label class="form-label">Usuario</label>
+        <div class="col-auto">
+            <select onchange="navigate(event)" class="form-select form-select-sm mb-3" aria-label="Bulk actions" data-list-filter="data-list-filter">
+                <#list usuarios as usuario>
+                    <option value="${usuario.id}" <#if usuario.id == idUsuario>selected</#if> >${usuario.nombre}</option>
+                </#list>
+            </select>
+        </div>
+    </form>
+</div>
+
+
+<table class="table">
+
+    <tbody>
+
+    <#list lineasDocumentos as lineaDocumento>
+    <tr class="smooth-hover">
+        <td class="list-item border-bottom d-flex">
+
+            <div class="d-flex flex-column w-100 pb-3">
+
+                <div class="d-flex w-100 align-items-center">
+                    <div class="d-inline-flex align-items-center item-row" onclick="descargarDocumento('${lineaDocumento.uuid}')" role="button">
+                        <i class="format-icon PDF fa-2x"></i> <span class="ms-3">${lineaDocumento.nombre}</span>
+                    </div>
+
+                </div>
+
+                <div class="mb-2">
+                    <em>${lineaDocumento.descripcion}</em>
+                </div>
+
+                <#if lineaDocumento.inCircuito>
+                <div class="mb-2">
+                    <em>Circuito: <b>${lineaDocumento.circuitoDto.nombre}</b> -
+                        <a href="javascript:void(0)" onclick="showInfoCircuito('${lineaDocumento.idTarea}')">Información del circuito</a>
+                    </em>
+                </div>
+            </#if>
+
+            <div>
+
+                <#if lineaDocumento.delegado == false && lineaDocumento.omitido == false>
+                    <button class="btn btn-outline-primary" onclick="delegarTarea('${lineaDocumento.idTarea}')">Delegar</button>
+                    <button class="btn btn-outline-secondary ms-3" onclick="omitirTarea('${lineaDocumento.idTarea}')">Omitir</button>
+                <#else>
+
+                    <#if lineaDocumento.delegado == true && lineaDocumento.omitido == true>
+                        Nada
+                    <#else>
+
+                        <#if lineaDocumento.delegado>
+                            <button class="btn btn-outline-secondary ms-3" onclick="omitirTarea('${lineaDocumento.idTarea}')">Omitir</button>
+                        </#if>
+
+                        <#if lineaDocumento.omitido>
+                            <button class="btn btn-outline-primary" onclick="delegarTarea('${lineaDocumento.idTarea}')">Delegar</button>
+                        </#if>
+                    </#if>
+
+                </#if>
+
+
+            </div>
+
+        </div>
+        </td>
+    </tr>
+    </#list>
+
+    </tbody>
+</table>
+
+
+<script>
+
+        const navigate = e => {
+            const url = '/secured/administrarTareas?idUsuario=' + e.target.value
+            window.location.href = url;
+        }
+
+        const delegarTarea = idTarea => {
+            const url = '/secured/delegarTarea?idTarea=' + idTarea;
+            fetchModal(url);
+        }
+
+        const omitirTarea = idTarea => {
+            const url = '/secured/omitirTarea?idTarea=' + idTarea;
+            fetchModal(url);
+        }
+
+</script>
+
+</@base.layout>

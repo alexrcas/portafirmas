@@ -1,0 +1,75 @@
+<#import "index.flt" as base>
+
+<@base.layout>
+<nav class="navbar navbar-expand-lg mb-2 ps-0">
+
+    <div class="d-flex flex-column">
+
+        <div class="botonera">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Acciones
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item cursor-pointer" onclick="nuevaAusencia()">Nueva Ausencia</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</nav>
+
+<div id="tableExample" data-list='{"valueNames":["dni","nombre"]}'>
+    <div class="row justify-content-start g-0 mt-3 w-50 mb-2">
+        <form>
+            <div class="input-group w-50"><input class="form-control form-control-sm shadow-none search" type="search" placeholder="Buscar..." aria-label="search" />
+                <div class="input-group-text bg-transparent"><span class="fa fa-search fs--1 text-600"></span></div>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive scrollbar">
+
+        <table class="table table-bordered table-striped table-hover fs--1 mb-0">
+            <thead class="bg-200 text-900">
+            <tr>
+                <th colspan="2">Ausente</th>
+                <th colspan="2">Sustituto</th>
+            </tr>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+
+                <th>DNI</th>
+                <th>Nombre</th>
+            </tr>
+            </thead>
+            <tbody class="list">
+                <#list ausencias as ausencia>
+                    <tr>
+                        <td>${ausencia.usuarioAusente.dni}</td>
+                        <td>${ausencia.usuarioAusente.nombre}</td>
+
+                        <td>${ausencia.usuarioSustituto.dni}</td>
+                        <td>${ausencia.usuarioSustituto.nombre}</td>
+                    </tr>
+                </#list>
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+
+<script>
+
+    const nuevaAusencia = () => {
+        const url = '/portafirmas/secured/nuevaAusencia';
+        fetchModal(url);
+    }
+
+</script>
+
+</@base.layout>

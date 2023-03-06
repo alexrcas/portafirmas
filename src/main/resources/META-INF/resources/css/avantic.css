@@ -1,0 +1,156 @@
+input[type="text"].required, textarea {
+    background-color : #fffcc1;
+}
+
+select.required, textarea {
+    background-color : #fffcc1;
+}
+
+textarea {
+    resize: none;
+}
+
+textarea, textarea {
+    background-color : #ffffff;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.navbar-top {
+    min-height: 3rem;
+}
+
+.item-row:hover {
+    font-weight: bold !important;
+}
+
+.format-icon::before {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font: var(--fa-font-solid);
+}
+
+.folder-icon::before {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font: var(--fa-font-solid);
+    content: "\f07b";
+    color: #c9c94b
+}
+
+.format-icon.PDF::before {
+    content: "\f1c1";
+    font-weight: 800;
+    color: #cf4e4e;
+}
+
+.format-icon.TXT::before {
+    content: "\f15c";
+    font-weight: 800;
+}
+
+.format-icon.DESCONOCIDO::before {
+    content: "\f15b";
+    color: #555555
+}
+
+.format-icon.ODT::before {
+    content: "\f1c2";
+    font-weight: 800;
+    color: #002cfcab
+}
+
+.format-icon.XML::before {
+    content: "\f1c9";
+    font-weight: 100;
+    color: #555555
+}
+
+.list-item {
+    padding: 0.4rem !important;
+}
+
+.smooth-hover {
+    transition: 0.1s;
+}
+
+.smooth-hover:hover {
+    background-color: rgba(0, 0, 0, 0.075) !important;
+}
+
+.row-selected {
+    background-color: rgba(0, 0, 0, 0.075) !important;
+}
+
+.list-group-item-versiones {
+    border: 0;
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.popover-arrow {
+    display: none !important;
+}
+
+#explorer {
+    height: 350px;
+    overflow: auto;
+}
+
+.search-box {
+    width: 25rem;
+}
+
+#firma-box {
+    height: 6.5em
+}
+
+#seccion-metadatos {
+    height: fit-content
+}
+
+.vh-custom {
+    height: 88.5vh;
+}
+
+#tabla-metadatos tr td:first-child {
+    width: 20em;
+}
+
+.date {
+    font-style: italic;
+}
+
+#metadatos-editor {
+    max-height: 75vh;
+}
+
+.ml-vh-47 {
+    margin-left: 47vh;
+}
+
+a {
+    color: inherit
+}
+
+.active > * {
+    color: #2c7be5;
+    font-weight: bold
+}
+
+.active > i {
+    color: #2c7be5;
+}
+
+.col-selector {
+    height: 40vh;
+    overflow: auto;
+}
+
+.icon-fs-custom {
+    font-size: 1.5em !important;
+}
+

@@ -1,0 +1,23 @@
+<#include "avaForm.flt">
+
+
+<span class="modalTitle">Delegar Tarea</span>
+
+<form action="/portafirmas/delegarTarea" method="post">
+    <div class="alert alert-info">Seleccione el usuario en el que delegar esta tarea</div>
+
+    <input type="text" name="idTarea" class="d-none">
+
+    <select name="idUsuario" class="form-select form-select-sm mb-3" aria-label="Bulk actions" data-list-filter="data-list-filter">
+        <#list usuarios as usuario>
+            <option value="${usuario.id}">${usuario.nombre} (${usuario.dni})</option>
+        </#list>
+    </select>
+
+    <div class="modal-footer d-flex justify-content-between pb-0 px-0">
+        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+        <button id="submit-modal-btn" class="btn btn-success" type="button">Aceptar</button>
+    </div>
+</form>
+
+
