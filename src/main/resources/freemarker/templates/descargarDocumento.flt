@@ -1,2 +1,0 @@
-<iframe id="fred" title="PDF in an i-Frame" src='/portafirmas/secured/descargarContenido/${uuid}#toolbar=0'
-        scrolling="auto" style="height:85vh" width="100%" ></iframe>

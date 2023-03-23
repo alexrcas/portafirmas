@@ -1,5 +1,7 @@
 # Portafirmas
 
+El código de este proyecto ha sido diseñado para un cliente privado y no está públicamente disponible. Únicamente se muestra la descripción del proyecto.
+
 ### Descripción
 Portafirmas de documentos electrónicos. El portafirmas no almacena documentos, tan solo una representación y un identificador a un repositorio documental externo. Posee las siguientes funcionalidades:
 * Visualizar documentos
