@@ -1,6 +1,8 @@
 # Portafirmas
 
-Aplicación de portafirmas integrada con Autofirma
+Aplicación de portafirmas integrada con Autofirma.
+
+*El código de esta aplicación es privado. Únicamente se muestra la descripción del proyecto.*
 
 ## Descripción funcional
 
