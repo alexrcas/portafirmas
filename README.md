@@ -176,6 +176,15 @@ Es importante especificar en el mensaje de salida cómo entró el documento al s
 
 Al igual que en el caso de los mensajes de entrada, la lógica para procesar estos mensajes de salida está completamente desacoplada del resto de la aplicación. De forma similar al caso de entrada, si los sistemas externos se encuentran caídos la información está almacenada y puede reintentarse la comunicación más adelante o incluso una tercera aplicación con acceso a la tabla de mensajes de salida podría ser la encargada de gestionar estas actualizaciones.
 
+### Manejo de errores
+Lo explicado anteriormente permite registrar y analizar la información que ha fallado a la hora de entrar o salir de la aplicación. En el siguiente ejemplo se muestran mensajes creados a propósito con una sintaxis incorrecta para provocar una excepción a la hora de ser deserializados, pero estos errores podrían ser de cualquier naturaleza como por ejemplo un sistema externo caído en un momento puntual.
+
+![](docs/img/errores.png)
+
+En azul se muestra el mensaje que provocó el error y en rojo la causa del mismo. Esta información es de carácter técnico. Quizá en un entorno real podría utilizarse la pila *ELK*, pero con ello se quiere simplemente resaltar las posibilidades del diseño.
+
+![](docs/img/detalleError.png)
+
 
 ### Política de almacenamiento interno
 
